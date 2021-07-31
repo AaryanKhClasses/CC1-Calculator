@@ -21,12 +21,31 @@ function afterOperation(operation) {
     preLabel.innerHTML = `${label.innerHTML} ${operation}`
     label.innerHTML = '0'
 }
-
-function add() {
-    if(preLabel.innerHTML.includes('+')) {
-        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString()
-        afterOperation('+')
+const operationTypes = ['+', '-', '×', '÷']
+function operation(operation) {
+    if(operationTypes.includes(preLabel.innerHTML)) {
+        console.log(parseInt(preLabel.innerHTML.slice(0, -1)))
+        preLabel.innerHTML = parseInt(preLabel.innerHTML.slice(0, -1)) + operation + parseInt(label.innerHTML)
+        afterOperation(operation)
     } else {
-        afterOperation('+')
+        afterOperation(operation)
     }
+}
+
+function eqOperation(operation) {
+    const func = parseInt(preLabel.innerHTML.slice(0, -1)) + operation + parseInt(label.innerHTML)
+    
+    preLabel.innerHTML = ''
+}
+
+function add() { operation('+') }
+function subtract() { operation('-') }
+function multiply() { operation('×') }
+function divide() { operation('÷') }
+
+function equals() {
+    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '+') {  eqOperation('+') }
+    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '-') {  eqOperation('-') }
+    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '×') {  eqOperation('×') }
+    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '÷') {  eqOperation('÷') }
 }
