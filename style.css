@@ -1,0 +1,57 @@
+* {
+    cursor: default;
+}
+
+button {
+    border-radius: 0;
+    display: inline-block;
+    color: white;
+    border: none;
+    margin: 1px;
+    font-size: large;
+}
+
+button:hover {
+    background: #343434;
+}
+
+.container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.display {
+    background: #1F1F1F;
+    text-align: right;
+    width: 218px;
+    margin-bottom: 4px;
+}
+
+label {
+    margin-right: 5px;
+    font-size: large;
+}
+
+.displayLabel {
+    color: white;
+}
+
+.preLabel {
+    color: #9E9EA0;
+}
+
+.numbtn {
+    width: 50px;
+    background: #060606;
+}
+
+.opbtn {
+    width: 50px;
+    background: #131313;
+}
+
+.lgbtn {
+    width: 106px;
+}

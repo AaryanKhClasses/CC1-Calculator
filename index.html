@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CC1-Caluclator</title>
+        <link rel="stylesheet" href="./style.css">
+        <script defer src="./script.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="display">
+                <label class="preLabel"></label><br>
+                <label class="displayLabel">0</label>
+            </div>
+            <div class="buttons">
+                <button class="lgbtn opbtn" onclick="document.getElementsByClassName('displayLabel')[0].innerText = '0'; document.getElementsByClassName('preLabel')[0].innerHTML = ''">C</button>
+                <button class="opbtn" onclick="del()">⌫</button>
+                <button class="opbtn" onclick="divide()">÷</button><br>
+
+                <button class="numbtn" onclick="seven()">7</button>
+                <button class="numbtn" onclick="eight()">8</button>
+                <button class="numbtn" onclick="nine()">9</button>
+                <button class="opbtn" onclick="multiply()">×</button><br>
+                
+                <button class="numbtn" onclick="four()">4</button>
+                <button class="numbtn" onclick="five()">5</button>
+                <button class="numbtn" onclick="six()">6</button>
+                <button class="opbtn" onclick="add()">+</button><br>
+    
+                <button class="numbtn" onclick="one()">1</button>
+                <button class="numbtn" onclick="two()">2</button>
+                <button class="numbtn" onclick="three()">3</button>
+                <button class="opbtn" onclick="subtract()">-</button><br>
+    
+                <button class="lgbtn numbtn" onclick="zero()">0</button>
+                <button class="numbtn" onclick="point()">.</button>
+                <button class="opbtn" onclick="equals()">=</button><br>
+            </div>
+        </div>
+    </body>
+</html>
