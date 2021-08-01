@@ -12,6 +12,7 @@ function three() { if(label.innerHTML == '0') { label.innerHTML = '3' } else { l
 function two() { if(label.innerHTML == '0') { label.innerHTML = '2' } else { label.innerHTML += '2' } }
 function one() { if(label.innerHTML == '0') { label.innerHTML = '1' } else { label.innerHTML += '1' } }
 function zero() { if(label.innerHTML == '0') { label.innerHTML = '0' } else { label.innerHTML += '0' } }
+function point() { if(label.innerHTML == '0') { label.innerHTML = '0.' } else { label.innerHTML += '.' } }
 
 // Clear Functions
 // function clear() { label.innerHTML = '0'; preLabel.innerHTML = '' } // idk why, but somehow this doesn't work in js file but works in the html file
@@ -111,8 +112,21 @@ function divide() {
 }
 
 function equals() {
-    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '+') {  eqOperation('+') }
-    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '-') {  eqOperation('-') }
-    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '×') {  eqOperation('×') }
-    if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '÷') {  eqOperation('÷') }
+    if(preLabel.innerHTML.includes('+')) {
+        add()
+        label.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString()
+        preLabel.innerHTML = ''
+    } else if(preLabel.innerHTML.includes('-')) {
+        subtract()
+        label.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) - parseInt(label.innerHTML)).toString()
+        preLabel.innerHTML = ''
+    } else if(preLabel.innerHTML.includes('×')) {
+        multiply()
+        label.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) * parseInt(label.innerHTML)).toString()
+        preLabel.innerHTML = ''
+    } else if(preLabel.innerHTML.includes('÷')) {
+        divide()
+        label.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) / parseInt(label.innerHTML)).toString()
+        preLabel.innerHTML = ''
+    }
 }
