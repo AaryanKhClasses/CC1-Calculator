@@ -22,15 +22,6 @@ function afterOperation(operation) {
     label.innerHTML = '0'
 }
 const operationTypes = ['+', '-', '×', '÷']
-function operation(operation) {
-    if(operationTypes.includes(preLabel.innerHTML)) {
-        console.log(parseInt(preLabel.innerHTML.slice(0, -1)))
-        preLabel.innerHTML = parseInt(preLabel.innerHTML.slice(0, -1)) + operation + parseInt(label.innerHTML)
-        afterOperation(operation)
-    } else {
-        afterOperation(operation)
-    }
-}
 
 function eqOperation(operation) {
     const func = parseInt(preLabel.innerHTML.slice(0, -1)) + operation + parseInt(label.innerHTML)
@@ -38,10 +29,86 @@ function eqOperation(operation) {
     preLabel.innerHTML = ''
 }
 
-function add() { operation('+') }
-function subtract() { operation('-') }
-function multiply() { operation('×') }
-function divide() { operation('÷') }
+function add() {
+    if(preLabel.innerHTML.includes('+')) {
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('-')) {
+        subtract()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('×')) {
+        multiply()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('÷')) {
+        divide()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
+        label.innerHTML = '0'
+    } else {
+        afterOperation('+')
+    }
+}
+function subtract() {
+    if(preLabel.innerHTML.includes('+')) {
+        add()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) - parseInt(label.innerHTML)).toString() + ' -'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('-')) {
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) - parseInt(label.innerHTML)).toString() + ' -'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('×')) {
+        multiply()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) - parseInt(label.innerHTML)).toString() + ' -'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('÷')) {
+        divide()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) - parseInt(label.innerHTML)).toString() + ' -'
+        label.innerHTML = '0'
+    } else {
+        afterOperation('-')
+    }
+}
+function multiply() {
+    if(preLabel.innerHTML.includes('+')) {
+        add()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) * parseInt(label.innerHTML)).toString() + ' ×'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('-')) {
+        subtract()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) * parseInt(label.innerHTML)).toString() + ' ×'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('×')) {
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) * parseInt(label.innerHTML)).toString() + ' ×'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('÷')) {
+        divide()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) * parseInt(label.innerHTML)).toString() + ' ×'
+        label.innerHTML = '0'
+    } else {
+        afterOperation('×')
+    }
+}
+function divide() {
+    if(preLabel.innerHTML.includes('+')) {
+        add()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) / parseInt(label.innerHTML)).toString() + ' ÷'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('-')) {
+        subtract()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) / parseInt(label.innerHTML)).toString() + ' ÷'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('×')) {
+        multiply()
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) / parseInt(label.innerHTML)).toString() + ' ÷'
+        label.innerHTML = '0'
+    } else if(preLabel.innerHTML.includes('÷')) {
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) / parseInt(label.innerHTML)).toString() + ' ÷'
+        label.innerHTML = '0'
+    } else {
+        afterOperation('÷')
+    }
+}
 
 function equals() {
     if(preLabel.innerHTML[preLabel.innerHTML.length - 1] == '+') {  eqOperation('+') }
