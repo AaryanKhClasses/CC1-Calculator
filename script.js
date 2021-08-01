@@ -18,38 +18,34 @@ function point() { if(label.innerHTML == '0') { label.innerHTML = '0.' } else { 
 // function clear() { label.innerHTML = '0'; preLabel.innerHTML = '' } // idk why, but somehow this doesn't work in js file but works in the html file
 function del() { if(label.innerHTML.length != 1) { label.innerHTML = label.innerHTML.slice(0, -1) } else { label.innerHTML = '0' } }
 
-function afterOperation(operation) {
-    preLabel.innerHTML = `${label.innerHTML} ${operation}`
-    label.innerHTML = '0'
-}
-const operationTypes = ['+', '-', '×', '÷']
-
-function eqOperation(operation) {
-    const func = parseInt(preLabel.innerHTML.slice(0, -1)) + operation + parseInt(label.innerHTML)
-    
-    preLabel.innerHTML = ''
+function afterOperation(operation) { // This function is used to add the operation to the preLabel
+    preLabel.innerHTML = `${label.innerHTML} ${operation}` // Adds the operation to the preLabel
+    label.innerHTML = '0' // Resets the label to 0
 }
 
-function add() {
-    if(preLabel.innerHTML.includes('+')) {
-        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
-        label.innerHTML = '0'
-    } else if(preLabel.innerHTML.includes('-')) {
-        subtract()
-        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
-        label.innerHTML = '0'
-    } else if(preLabel.innerHTML.includes('×')) {
-        multiply()
-        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
-        label.innerHTML = '0'
-    } else if(preLabel.innerHTML.includes('÷')) {
-        divide()
-        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +'
-        label.innerHTML = '0'
-    } else {
-        afterOperation('+')
+// Operation Functions
+function add() { // This function is used to add the operation to the preLabel
+    if(preLabel.innerHTML.includes('+')) { // If the preLabel already has a + operation
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +' // Adds the numbers and operation to the preLabel
+        label.innerHTML = '0' // Resets the label to 0
+    } else if(preLabel.innerHTML.includes('-')) { // If the preLabel already has a - operation
+        subtract() // Calls the subtract function
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +' // Adds the numbers and operation to the preLabel
+        label.innerHTML = '0' // Resets the label to 0
+    } else if(preLabel.innerHTML.includes('×')) { // If the preLabel already has a × operation
+        multiply() // Calls the multiply function
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +' // Adds the numbers and operation to the preLabel
+        label.innerHTML = '0' // Resets the label to 0
+    } else if(preLabel.innerHTML.includes('÷')) { // If the preLabel already has a ÷ operation
+        divide() // Calls the divide function
+        preLabel.innerHTML = (parseInt(preLabel.innerHTML.slice(0, -1)) + parseInt(label.innerHTML)).toString() + ' +' // Adds the numbers and operation to the preLabel
+        label.innerHTML = '0' // Resets the label to 0
+    } else { // If the preLabel doesn't have any operations
+        afterOperation('+') // Calls the afterOperation() function
     }
 }
+
+// ! ALl the next operations are similar to the previous one.
 function subtract() {
     if(preLabel.innerHTML.includes('+')) {
         add()
@@ -70,6 +66,7 @@ function subtract() {
         afterOperation('-')
     }
 }
+
 function multiply() {
     if(preLabel.innerHTML.includes('+')) {
         add()
@@ -90,6 +87,7 @@ function multiply() {
         afterOperation('×')
     }
 }
+
 function divide() {
     if(preLabel.innerHTML.includes('+')) {
         add()
