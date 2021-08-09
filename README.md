@@ -1,7 +1,7 @@
 # CC1-Calculator
 ### Just a simple calculator I made as a self-challenge in HTML, JS and CSS.
 ---
-# Pre-requesties
+# Pre-requesities
 ### A Browser: Yes, just a browser. Nothing else! Just open the "index.html" file and thats it!
 ---
 # Installation
